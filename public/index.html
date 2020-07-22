@@ -1,0 +1,112 @@
+<!doctype html>
+<title>Connor's /r/place clone</title>
+<meta charset="utf-8">
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-functions.js"></script>
+
+<style>
+
+body, html {
+  width: 100%; height: 100%; padding: 0; margin: 0;
+  box-sizing: border-box;
+  font-family: monospace;
+}
+
+* { box-sizing: inherit; }
+
+canvas {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+}
+
+#toolbar {
+  position: fixed;
+  left: 30px;
+  top: 30px;
+}
+
+#toolbar>div, #zoom>div {
+  display: block;
+  width: 50px;
+  height: 50px;
+  background: #333;
+  margin-bottom: 4px;
+}
+#toolbar>div {
+  background: #fff;
+  border-radius: 8px 12px;
+  border: 3px solid rgba(0,0,0,0.2)
+}
+#zoom>div {
+  background: transparent;
+}
+
+#toolbar > div.enabled {
+  border: 5px black inset;
+}
+
+#pantool {
+  margin-bottom: 4px;
+}
+
+#pantool>img,#zoomin>img,#zoomout>img { width: 100%; height: 100% }
+
+#zoom {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+}
+
+#position {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  background: rgba(255,255,255,0.5);
+  padding: 3px;
+  user-select: none;
+}
+
+#connected {
+  position: fixed;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 5px 15px;
+  font-size: 40px;
+  color: white;
+  transition: top 0.6s;
+}
+
+#connected.no {
+  background-color: red;
+}
+
+#connected.yes {
+  top: -60px;
+  background-color: green;
+}
+
+</style>
+<canvas width=200 height=200></canvas>
+
+<div id='connected'></div>
+
+<div id='toolbar'>
+  <div id='pantool'><img src='DPAD_all.png'></div>
+</div>
+
+<div id='zoom'>
+  <div id='zoomin'><img src='zoomIn.png'></div>
+  <div id='zoomout'><img src='zoomOut.png'></div>
+</div>
+
+<div id='position'>(0, 0)</div>
+<script src=firebase.js></script>
+<script src=index.js></script>
