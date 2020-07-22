@@ -1,7 +1,7 @@
 # Spot
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
 [![Open Source](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://opensource.org/)
-[![GitHub stars](https://img.shields.io/github/stars/tterb/playmusic.svg?style=social&label=Star)](https://github.com/ConnorMulqueen/spot)
+[![GitHub stars](https://img.shields.io/github/stars/ConnorMulqueen/spot.svg?style=social&label=Star&maxAge=2592000)](https://GitHub.com/ConnorMulqueen/spot/stargazers/)
 
 
 A serverless /r/place clone using firestore
