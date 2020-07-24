@@ -13,6 +13,7 @@ function connectFirebase() {
     measurementId: "G-5G17632L0D"
   };
   firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
 
   // Get a reference to the database service
   var db = firebase.database();
