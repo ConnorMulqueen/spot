@@ -11,21 +11,27 @@
 <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-database.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-auth.js"></script>
 
-<canvas width=100 height=100></canvas>
-
-<div id='connected'></div>
-
-<div id='toolbar'>
-  <div id='pantool'><img src='resources/DPAD_all.png'></div>
+<div class="loader" id="loader">
+  <div id="spinner"></div>
+  <p>Loading...</p>
 </div>
 
-<div id='zoom'>
-  <div id='zoomin'><img src='resources/zoomIn.png'></div>
-  <div id='zoomout'><img src='resources/zoomOut.png'></div>
+<div id="loaded">
+  <canvas width=100 height=100></canvas>
+
+  <div id='toolbar'>
+    <div id='pantool'><img src='resources/DPAD_all.png'></div>
+  </div>
+
+  <div id='zoom'>
+    <div id='zoomin'><img src='resources/zoomIn.png'></div>
+    <div id='zoomout'><img src='resources/zoomOut.png'></div>
+  </div>
+
 </div>
 
 <div id='position'>(0, 0)</div>
+
 <!-- <script src=firebase.js></script> -->
 <script src=firebaseRealtime.js></script>
-
 <script src=index.js></script>

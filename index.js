@@ -11,7 +11,7 @@ let ctx
 
 const elems = {}
 
-;['toolbar', 'pantool', 'position', 'connected', 'zoomin', 'zoomout'].forEach(name => elems[name] = document.getElementById(name))
+;['toolbar', 'pantool', 'position', 'spinner', 'zoomin', 'zoomout'].forEach(name => elems[name] = document.getElementById(name))
 
 const toolbarelems = [elems.pantool]
 
@@ -202,6 +202,7 @@ elems.pantool.onclick = () => {
   setMode('pan')
   setEnabledElem(elems.pantool)
 }
+
 
 {
   // Add brush tools.
@@ -410,22 +411,4 @@ function addTile(x, y, colorName) {
   imagedata.data[2] = color[2]
   imagedata.data[3] = 255 //opacity
   imgctx.putImageData(imagedata, x, y)
-  // ctx.save()
-  // draw()
-}
-
-imgctx.fillStyle = 'grey'
-imgctx.fillRect(0, 0, 1000, 1000)
-draw()
-
-const imagedata = imgctx.createImageData(1, 1)
-const _d = imagedata.data
-function rawSet(x, y, c, alpha = 255) {
-  const color = colorNamesToRGB[c]
-  _d[0] = color[0]
-  _d[1] = color[1]
-  _d[2] = color[2]
-  _d[3] = alpha
-  imgctx.putImageData(imagedata, x, y)
-  draw()
 }
