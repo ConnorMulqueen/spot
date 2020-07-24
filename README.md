@@ -4,7 +4,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/ConnorMulqueen/spot.svg?style=social&label=Star&maxAge=2592000)](https://GitHub.com/ConnorMulqueen/spot/stargazers/)
 
 
-A serverless /r/place clone using firestore
+A serverless /r/place clone using firebase
 
 ## About
 [/r/place was Reddit's beloved april fools joke in 2017](https://en.wikipedia.org/wiki/Place_(Reddit))
