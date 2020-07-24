@@ -3,6 +3,7 @@
 [![Open Source](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://opensource.org/)
 [![GitHub stars](https://img.shields.io/github/stars/ConnorMulqueen/spot.svg?style=social&label=Star&maxAge=2592000)](https://GitHub.com/ConnorMulqueen/spot/stargazers/)
 
+https://connormulqueen.github.io/spot/
 
 A serverless /r/place clone using firebase
 
