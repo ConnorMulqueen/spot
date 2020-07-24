@@ -1,6 +1,8 @@
+// Most of this front-end was pulled and modified from https://github.com/josephg/sephsplace
+
 // We actually need 2 canvases, 1 for the view and 1 for the content.
 const imgCanvas = document.createElement('canvas')
-imgCanvas.width = 200; imgCanvas.height = 200
+imgCanvas.width = 100; imgCanvas.height = 100
 const imgctx = imgCanvas.getContext('2d')
 
 // Actual canvas drawn to the screen.
@@ -16,30 +18,7 @@ const toolbarelems = [elems.pantool]
 // zoomin, zoomout, ..?
 const motion = new Set
 
-const palette = [
-  [255, 255, 255], // white
-  [228, 228, 228], // light grey
-  [136, 136, 136], // grey
-  [34, 34, 34], //black
-
-  [255,167,209], // pink
-  [229, 0, 9], // red
-  [229, 149, 0], // orange
-
-  [160, 106, 66], // brown
-
-  [229, 217, 0], // yellow
-  [148, 224, 68], // light green
-  [2, 190, 1], // green
-  [0, 211, 221], // cyan
-
-  [0, 131, 199], // medium blue
-  [0, 0, 234], // dark blue
-  [207, 110, 228], // light purple
-  [130, 0, 128], // dark Purple
-]
-
-const colorNamesToRGB = {
+const colors = {
   "white": [255, 255, 255],
   "light grey": [228, 228, 228],
   "grey": [136, 136, 136],
@@ -226,9 +205,9 @@ elems.pantool.onclick = () => {
 
 {
   // Add brush tools.
-  for (let i = 0; i < 16; i++) {
+  for (let i in colors) {
     const elem = document.createElement('div')
-    const c = palette[i]
+    const c = colors[i]
     elem.style.backgroundColor = `rgb(${c[0]}, ${c[1]}, ${c[2]})`
     elem.style.height = '30px'
     ;(i => elem.onclick = () => {
@@ -293,7 +272,7 @@ canvas.onmousedown = e => {
     if (tx < 0 || tx >= 1000 || ty < 0 || ty >= 1000) return
 
     const oldColor = imgctx.getImageData(tx, ty, 1, 1).data
-    const color = palette[brush]
+    const color = colors[brush]
 
     if (oldColor[0] !== color[0] || oldColor[1] !== color[1] || oldColor[2] !== color[2]) {
       const imagedata = imgctx.createImageData(1, 1)
@@ -304,6 +283,15 @@ canvas.onmousedown = e => {
       d[2] = color[2]
       d[3] = 255 // opacity
       imgctx.putImageData(imagedata, tx, ty)
+      // paintedColor = rgbToColorNames[[color[0],color[1],color[2]]]
+
+      for (c in colors) {
+        if (colors[c][0] === color[0] && colors[c][1] === color[1] && colors[c][2] === color[2]) {
+          paintedColor = c
+        }
+      }
+      // updateTileOnDB(tx,ty,paintedColor)
+      writeTile(tx,ty,paintedColor)
       draw()
     }
   } else if (mode === 'pan') {
@@ -403,7 +391,7 @@ function draw() {
     .forEach((str, i) => { ctx.fillText(str, 0, 1000 + (i+1) * 15) })
 
     if (mode === 'paint' && isInScreen(mouse.tx, mouse.ty)) {
-      const c = palette[brush]
+      const c = colors[brush]
       ctx.fillStyle = `rgba(${c[0]}, ${c[1]}, ${c[2]}, 0.5)`
       ctx.fillRect(mouse.tx + 0.1, mouse.ty + 0.1, 0.8, 0.8)
     }
@@ -412,8 +400,8 @@ function draw() {
   })
 }
 
-function drawTile(x, y, colorName) {
-  let color = colorNamesToRGB[colorName]
+function addTile(x, y, colorName) {
+  let color = colors[colorName]
   const imagedata = imgctx.createImageData(1, 1)
   const d = imagedata.data
 
@@ -422,11 +410,9 @@ function drawTile(x, y, colorName) {
   imagedata.data[2] = color[2]
   imagedata.data[3] = 255 //opacity
   imgctx.putImageData(imagedata, x, y)
-  ctx.save()
-  draw()
+  // ctx.save()
+  // draw()
 }
-
-
 
 imgctx.fillStyle = 'grey'
 imgctx.fillRect(0, 0, 1000, 1000)
@@ -435,7 +421,7 @@ draw()
 const imagedata = imgctx.createImageData(1, 1)
 const _d = imagedata.data
 function rawSet(x, y, c, alpha = 255) {
-  const color = palette[c]
+  const color = colorNamesToRGB[c]
   _d[0] = color[0]
   _d[1] = color[1]
   _d[2] = color[2]
