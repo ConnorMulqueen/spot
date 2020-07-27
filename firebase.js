@@ -1,5 +1,9 @@
 
 var db = connectFirebase();
+let provider;
+provider = new firebase.auth.GithubAuthProvider();
+
+
 function connectFirebase() {
   console.log("connecting...")
   var firebaseConfig = {
@@ -13,6 +17,7 @@ function connectFirebase() {
     measurementId: "G-5G17632L0D"
   };
   firebase.initializeApp(firebaseConfig);
+
   firebase.analytics();
 
   // Get a reference to the database service
