@@ -10,14 +10,14 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
+let user
 function signIn() {
   var provider = new firebase.auth.GithubAuthProvider();
-  provider.addScope('repo');
   firebase.auth().signInWithPopup(provider).then(function(result) {
   // This gives you a GitHub Access Token. You can use it to access the GitHub API.
   var token = result.credential.accessToken;
   // The signed-in user info.
-  var user = result.user;
+  user = result.user;
   // ...
   }).catch(function(error) {
   // Handle Errors here.
@@ -45,7 +45,8 @@ function writeTile(x,y,color) {
   db.ref('/tiles/' + 'tile_'+x+'_'+y).set({
     x: x,
     y: y,
-    color : color
+    color : color,
+    user: user
   });
 }
 
