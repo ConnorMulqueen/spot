@@ -46,7 +46,7 @@ function writeTile(x,y,color) {
     x: x,
     y: y,
     color : color,
-    user: user
+    user: user.displayName
   });
 }
 
