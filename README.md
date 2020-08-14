@@ -6,7 +6,7 @@
 
 https://connormulqueen.github.io/spot/
 
-A serverless /r/place clone using firebase
+A serverless /r/place clone using firebase free tier 
 
 ## About
 [/r/place was Reddit's beloved april fools joke in 2017](https://en.wikipedia.org/wiki/Place_(Reddit))
